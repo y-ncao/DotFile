@@ -1,0 +1,410 @@
+;; auto-save-list into ~/.emacs-save
+(setq auto-save-list-file-name "~/.emacs-save")
+
+;; add home directory to load path
+(add-to-list 'load-path "/home/ycao/.emacs.d/")
+
+;; fill out to column 76
+(setq-default fill-column 76)
+
+;; display line number
+(global-linum-mode t)
+
+;; Get rid of load screen
+(setq inhibit-splash-screen t)
+
+;; display time
+(display-time)
+
+;; Highlight current line
+(global-hl-line-mode 1)
+;; Custom the current line background color
+(set-face-background 'hl-line "#162712")
+
+;; highlight matching paren on hover
+(show-paren-mode 1)
+
+;; automatically insert the right matching bracket
+(electric-pair-mode 1)
+
+;; programming modes
+(autoload 'java-mode "cc-mode" "java" t)
+(autoload 'c++-mode  "cc-mode" "c++"  t)
+(autoload 'c-mode    "cc-mode" "c"    t)
+
+;; Why I can access python-mode without including these lines
+;; python-mode
+;;(require 'python-mode)
+;;(setq auto-mode-alist
+;;      (append '(("\\.py$" . python-mode)
+;;                ) auto-mode-alist
+;;                  ))
+;;(setq py-indent-offset 4)
+
+;; turn on linum-mode when python-mode fires
+;;(defun my-python-mode-hook ()
+;;  (linum-mode 1))
+;;(add-hook 'python-mode-hook 'my-python-mode-hook)
+
+;; visual-basic-mode
+(autoload 'visual-basic-mode "visual-basic-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.asp$" . visual-basic-mode))
+(add-to-list 'auto-mode-alist '("\\.bas$" . visual-basic-mode))
+(add-to-list 'auto-mode-alist '("\\.cls$" . visual-basic-mode))
+(add-to-list 'auto-mode-alist '("\\.vbs$" . visual-basic-mode))
+
+;; nxml-mode
+(require 'nxml-mode)
+(setq auto-mode-alist
+      (append '(("\\.docbook$" . nxml-mode)
+                ) auto-mode-alist
+                  ))
+
+;; javascript-mode
+(autoload 'javascript-mode "javascript" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . javascript-mode))
+(setq js-indent-level 4)
+
+;; cc-mode customizations
+(require 'cc-mode)
+(defun cc-linux-hook ()
+  ;; start with default linux formatting
+  (c-set-style "linux")
+
+  (setq
+   c-hanging-braces-alist (append c-hanging-braces-alist
+                                  '((inline-open after)
+                                    (class-open after)
+                                    ))
+   c-cleanup-list         (append c-cleanup-list
+                                  '(brace-elseif-brace
+                                    defun-close-semi
+                                    ))
+   c-auto-newline t
+   )
+  ;; turn on linum-mode too
+  (linum-mode 1)
+  )
+
+(add-hook 'c-mode-common-hook 'cc-linux-hook)
+
+;; SASS mode
+(add-to-list 'load-path "/home/ycao/.emacs.d/scss-mode.el")
+(require 'scss-mode)
+(setq-default scss-compile-at-save nil)
+
+;; coffee mode
+(add-to-list 'load-path "~/.emacs.d/coffee-mode.el")
+(require 'coffee-mode)
+;; This gives you a tab of 2 spaces
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(coffee-tab-width 2)
+ '(custom-safe-themes (quote ("1ac680de93fd50b67985be806d6883336cbb30675fdc95ba2b3f2afb3795dbe7" "349554b3ee417f62e606e6ee495893bfce46b6548b87278b43d93f17e8a62323" "f0e965d5a8a40ac118d5e4a9990ec339f772eecae1d84c2e6edef5b467b51620" "3a43ac68127583a56d3036927d2c57b9fe20fa816e76c353cbfccc7d2a324c8e" "52fc1d30fbcad59953b30805902d1a964c050cacd87a8ad143db2bafa3eb9da2" default)))
+ '(display-time-mode t)
+ '(scroll-bar-mode nil)
+ '(show-paren-mode t)
+ '(tool-bar-mode nil nil (tool-bar))
+ '(user-mail-address "ycao@navisite.com"))
+
+
+;; automatically clean up bad whitespace
+(setq whitespace-action '(auto-cleanup))
+;; only show bad whitespace
+(setq whitespace-style '(trailing space-before-tab indentation empty space-after-tab))
+
+;; web mode
+(add-to-list 'load-path "~/.emacs.d/web-mode.el")
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.eco\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.less\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+
+;; CSS colorization
+(setq web-mode-enable-css-colorization t)
+;;Auto-pairing
+(setq web-mode-enable-auto-pairing t)
+;;Highlight current HTML element (see web-mode-current-element-highlight-face)
+(setq web-mode-enable-current-element-highlight t)
+
+;; middle click paste on cursor position
+(setq mouse-yank-at-point t)
+
+;; mouse over focus buffer
+(setq mouse-autoselect-window t)
+
+;; indent with spaces, not tabs and set defaults to 4
+(setq-default indent-tabs-mode nil)
+(setq-default sgml-basic-offset 4)
+(setq-default nxml-child-indent 4)
+
+;; font-lock configuration
+(require 'font-lock)
+(setq-default font-lock-maximum-decoration t)
+(setq-default font-lock-maximum-size 1000000)
+(setq-default font-lock-use-colors '(color))
+(setq-default font-lock-auto-fontify t)
+(global-font-lock-mode t)
+
+;; Adobe Source Code Pro font, 11 pt
+;; http://blogs.adobe.com/typblography/2012/09/source-code-pro.html
+;; http://stefanv.github.com/blog/2012/09/26/consolas-vs-source-code-pro/
+(set-default-font "Source Code Pro-11")
+
+;; global bindings
+(global-set-key "\M-g" 'goto-line)
+
+;; https://github.com/glasserc/ethan-wspace
+(require 'ethan-wspace)
+(global-ethan-wspace-mode 1)
+
+;; personal settings
+
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;; replace everything selected but not
+(delete-selection-mode 1)
+
+;; disable C-z to minimize the window
+(put 'suspend-frame 'disabled t)
+
+;; scroll less "jumpy" than defaults
+(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+(setq scroll-step 1) ;; keyboard scroll one line at a time
+
+;; load smooth-scroll
+(require 'smooth-scroll)
+(smooth-scroll-mode t)
+
+;; M j to collapse multi lines
+(global-set-key (kbd "M-j")
+                (lambda ()
+                  (interactive)
+                  (join-line -1)))
+
+;; key to jump quicker
+;; Move more quickly
+(global-set-key (kbd "C-S-n")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (next-line 5))))
+
+(global-set-key (kbd "C-S-p")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (previous-line 5))))
+
+(global-set-key (kbd "C-S-f")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (forward-char 5))))
+
+(global-set-key (kbd "C-S-b")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (backward-char 5))))
+
+;; quit shell if ctrl+d
+(defun comint-delchar-or-eof-or-kill-buffer (arg)
+  (interactive "p")
+  (if (null (get-buffer-process (current-buffer)))
+      (kill-buffer)
+    (comint-delchar-or-maybe-eof arg)))
+
+(add-hook 'shell-mode-hook
+          (lambda ()
+            (define-key shell-mode-map
+              (kbd "C-d") 'comint-delchar-or-eof-or-kill-buffer)))
+
+;; ffap
+(defun open-file-at-cursor ()
+  "Open the file path under cursor.
+If there is text selection, uses the text selection for path.
+If the path is starts with “http://”, open the URL in browser.
+Input path can be {relative, full path, URL}.
+This command is similar to `find-file-at-point' but without prompting for confirmation.
+"
+  (interactive)
+  (let ( (path (if (region-active-p)
+                   (buffer-substring-no-properties (region-beginning) (region-end))
+                 (thing-at-point 'filename) ) ))
+    (if (string-match-p "\\`https?://" path)
+        (browse-url path)
+      (progn ; not starting “http://”
+        (if (file-exists-p path)
+            (find-file path)
+          (if (file-exists-p (concat path ".el"))
+              (find-file (concat path ".el"))
+            (when (y-or-n-p (format "file doesn't exist: 「%s」. Create?" path) )
+              (find-file path )) ) ) ) ) ))
+
+;; change file from controller to view
+(defun controller-view-toggle ()
+  (interactive)
+  (if (string-match "\/controllers\/" buffer-file-name)
+      (find-file-other-window (replace-regexp-in-string "\.coffee$" "\.eco" (replace-regexp-in-string "\/controllers\/" "\/views\/" buffer-file-name)))
+    (if (string-match "\/views\/" buffer-file-name)
+        (find-file-other-window (replace-regexp-in-string "\.eco$" "\.coffee" (replace-regexp-in-string "\/views\/" "\/controllers\/" buffer-file-name))))))
+
+;; ability to revert split pane config. Call winner-undo 【Ctrl+c ←】 and winner-redo 【Ctrl+c →】
+(winner-mode 1) ; in GNU emacs 23.2
+
+;; fullscreen emacs
+(defun fullscreen ()
+ (interactive)
+ (set-frame-parameter nil 'fullscreen
+              (if (frame-parameter nil 'fullscreen) nil 'fullboth))
+(progn
+  (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))  ;; no toolbar
+  (menu-bar-mode -1) ;;no menubar
+  (scroll-bar-mode -1) ;; no scroll bar
+  )
+)
+(global-set-key [f11] 'fullscreen)
+
+;; use tango-dark theme
+(load-theme 'tangotango)
+
+;; set initial window frame height
+(defun set-frame-size-according-to-resolution ()
+  (interactive)
+  (if window-system
+  (progn
+    ;; use 120 char wide window for largeish displays
+    ;; and smaller 80 column windows for smaller displays
+    ;; pick whatever numbers make sense for you
+    (if (> (x-display-pixel-width) 1280)
+           (add-to-list 'default-frame-alist (cons 'width 113))
+           (add-to-list 'default-frame-alist (cons 'width 80)))
+    ;; for the height, subtract a couple hundred pixels
+    ;; from the screen height (for panels, menubars and
+    ;; whatnot), then divide by the height of a char to
+    ;; get the height we want
+    (add-to-list 'default-frame-alist
+         (cons 'height (/ (- (x-display-pixel-height) -10)
+                             (frame-char-height)))))))
+
+(set-frame-size-according-to-resolution)
+
+;; Switch window from vertical split to horizontal split and vice versa
+(defun toggle-window-split ()
+  (interactive)
+  (if (= (count-windows) 2)
+      (let* ((this-win-buffer (window-buffer))
+             (next-win-buffer (window-buffer (next-window)))
+             (this-win-edges (window-edges (selected-window)))
+             (next-win-edges (window-edges (next-window)))
+             (this-win-2nd (not (and (<= (car this-win-edges)
+                                         (car next-win-edges))
+                                     (<= (cadr this-win-edges)
+                                         (cadr next-win-edges)))))
+             (splitter
+              (if (= (car this-win-edges)
+                     (car (window-edges (next-window))))
+                  'split-window-horizontally
+                'split-window-vertically)))
+        (delete-other-windows)
+        (let ((first-win (selected-window)))
+          (funcall splitter)
+          (if this-win-2nd (other-window 1))
+          (set-window-buffer (selected-window) this-win-buffer)
+          (set-window-buffer (next-window) next-win-buffer)
+          (select-window first-win)
+          (if this-win-2nd (other-window 1))))))
+
+(define-key ctl-x-4-map "t" 'toggle-window-split)
+
+;; Setup ido
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+(setq ido-file-extensions-order '(".py" ".emacs" ".xml" "css" "html" "less" "in"))
+(setq ido-use-filename-at-point 'guess)
+(setq ido-ignore-extensions t)
+
+;; emacs server, allows to open file in termianl show in emacs
+(server-start)
+
+;; I don't need to kill emacs that easily
+;; the mnemonic is C-x REALLY QUIT
+(global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
+(global-set-key (kbd "C-x C-c") 'delete-frame)
+
+;; Use M-w for copy-line if no active region
+;; Taken from https://github.com/skeeto/.emacs.d/blob/master/lisp/extras.el
+(defun flash-region (start end &optional timeout)
+  "Temporarily highlight region from START to END."
+  (let ((overlay (make-overlay start end)))
+    (overlay-put overlay 'face 'secondary-selection)
+    (run-with-timer (or timeout 0.2) nil 'delete-overlay overlay)))
+
+(defun save-region-or-current-line ()
+  (interactive)
+  (if (region-active-p)
+      (kill-ring-save (region-beginning) (region-end))
+    (flash-region (line-beginning-position) (line-beginning-position 2))
+    (kill-ring-save (line-beginning-position) (line-beginning-position 2))
+    (message "line copied")))
+
+(global-set-key (kbd "M-w") 'save-region-or-current-line)
+
+;; Hook markdown mode
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;; Make py-execute-region keep focus on python source
+(defadvice py-execute-region (around python-keep-focus activate)
+   "Thie advice to make focus python source code after execute command `py-execute-buffer'."
+   (let ((remember-window (selected-window))
+         (remember-point (point)))
+     ad-do-it
+     (select-window remember-window)
+     (goto-char remember-point)))
+
+;; sudo apt-get install python-xlib
+;; ibus-mode
+(require 'ibus)
+
+(setq ibus-python-shell-command-name "python2.7")
+;; Turn on ibus-mode automatically after loading .emacs
+(add-hook 'after-init-hook 'ibus-mode-on)
+;; Use C-SPC for Set Mark command
+(ibus-define-common-key ?\C-\s nil)
+;; Use C-/ for Undo command
+(ibus-define-common-key ?\C-/ nil)
+;; Change cursor color depending on IBus status
+(setq ibus-cursor-color '("limegreen" "yellow"))
+
+(global-set-key (kbd "C-=") 'ibus-toggle)
+
+;; Using server-client mode for ibus
+(add-hook 'after-make-frame-functions
+          (lambda (new-frame)
+            (select-frame new-frame)
+            (or ibus-mode (ibus-mode-on))))
+
+;; Setup for back delete
+(global-set-key (kbd "C-?") 'help-command)
+(global-set-key (kbd "M-?") 'mark-paragraph)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "M-h") 'backward-kill-word)

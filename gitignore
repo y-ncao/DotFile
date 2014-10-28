@@ -1,0 +1,7 @@
+*.o
+*.so
+*.pyc
+*Template.py
+*~
+\#*\#
+.DS_Store

@@ -1,0 +1,14 @@
+{
+  "name": "pm_website",
+  "version": "0.1.0",
+  "dependencies": {
+    "jquery": "~1.8.3"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-closure-compiler": "0.0.21",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-copy": "~0.4.1"
+  }
+}

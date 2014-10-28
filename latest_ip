@@ -1,0 +1,5 @@
+server ns.syr.dev
+zone syr.dev.
+update delete ycao-ubuntu.syr.dev
+update add ycao-ubuntu.syr.dev 15 A 10.244.36.99
+send
