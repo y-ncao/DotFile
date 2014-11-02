@@ -6,7 +6,8 @@ umask=006
 
 ##################################################
 # General Unix-y environment setup
-export EDITOR=vi
+################################################
+export EDITOR='emacsclient -t'
 export MANPATH=/usr/man:/usr/local/man
 export MPAGE='-b letter'
 export MANPATH=/usr/share/man
@@ -20,11 +21,12 @@ shopt -s checkwinsize
 export ORACLE_HOME=/home/ycao/instantclient_11_2
 ##################################################
 
-################################################ 
+################################################
 # Define what your prompt looks like
 # Standard Prompt
 #export PS1="[\u@\h \W]\\$ "
 # set variable identifying the chroot you work in (used in the prompt below)
+################################################
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
@@ -46,21 +48,14 @@ fi
 
 # Prompt with git branch added - no colors
 #export PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
-################################################ 
 
 ################################################
-# SSH Keychain
+# Command shortcuts
 ################################################
-keychain $HOME/.ssh/id_rsa
-source $HOME/.keychain/$HOSTNAME-sh
-
-################################################
-# Command shortcuts - optional
 alias which="type -path"
 alias h='history'
 alias l='ls -lh'
-alias ls='ls -BG'
-alias tree='tree -C' 
+alias tree='tree -C'
 
 # Alias to restart apache
 alias rapache='sudo /etc/init.d/apache2 restart'
@@ -80,21 +75,18 @@ alias grep='grep --color=tty -d skip'
 alias grpe='grep --color=tty -d skip'
 alias mroe='more'
 
-# For xdg-open
-alias op='xdg-open'
 
-# Personal setting for grep and find
-function gp { grep --color=tty -d recurse -n "$1" * ; }
-function fd { find . -name "*$1*" ; }
-# grep count
-#alias grepcount="grep -ch $1 $2 | awk '{ count += $0} END {print count}'"
 
-# Lock screen activate XScreenssaver
-alias lock="xscreensaver-command -lock"
-alias lcok="xscreensaver-command -lock"
+# Setup Window for awesome window manager
+alias resizewd="xrandr --output DisplayPort-0 --mode 1920x1200 --right-of DVI-0"
 
 # Setting emacs in one window
-alias em='emacs -nw'
+alias suem='sudo emacsclient -n'
+alias em='emacsclient -t'
+alias emw='emacsclient -n'
+alias ewm='emw'
+
+alias cheat='more ~/Dropbox/src/cheatsheet.md'
 
 function whichdb (){
     source ~/src/git/portal/bashrc
@@ -111,15 +103,16 @@ export PATH=/bin:/usr/bin:/usr/X11R6/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/bin
 #################################################
 # Mess with tab completion
 # Tab completion to only show directories when using cd
+#################################################
 complete -d cd
 
 # Don't show files ending in ~ using tab completion (.o:~ would do .o's too).
 export FIGNORE=\~
-#################################################
 
 ####################################################
 # Control "history" command behavior
 # If I run same command back to back don't put in history
+####################################################
 export HISTCONTROL=ignoredups:ignorespace
 
 # Append not overwrite
@@ -133,10 +126,11 @@ export HISTFILESIZE=5000
 
 # Add timestamp
 HISTTIMEFORMAT="[%Y-%m-%d %H:%M:%S] "
-####################################################
+
 
 ####################################################
 # Utility functions
+####################################################
 
 # Purpose: Convert a Unix time_t to a human readable date
 #        e.g.: x 1234567890.0 returns: 2009-02-13 18:31:30
@@ -206,11 +200,45 @@ function fcss () {
 }
 
 # Purpose: Function to find all .pyc files and remove them
-# Usage  : rmpyc 
+# Usage  : rmpyc
 function rmpyc () {
-    ffsi '*.pyc' | xargs rm
+    ff '*.pyc' | xargs rm
 }
 
+
+# Purpose: Function to do grep easily
+# Usage  : gp SOMESTRING
+function gp {
+    if [ -z "$2" ]
+    then
+        grep --color=tty -d recurse -n -i "$1" *
+    else
+        grep --color=tty -d recurse -n -i "$2" "$1" *
+    fi
+}
+
+# Purpose: Function to do find easily
+# Usage  : fd SOMESTRING
+function fd { find . -iname "*$1*" ; }
+
+
+# grep count
+#alias grepcount="grep -ch $1 $2 | awk '{ count += $0} END {print count}'"
+
+
+# Purpose: Function to cleanup all unwanted files
+# Usage  : clean
+function clean () {
+    ff '*.pyc' | xargs rm
+    ff '*~' | xargs rm
+    ff '\#*\#' | xargs rm
+    clear
+    ls
+}
+
+
+# Purpose: Function to auto extract all kinds of files
+# Usage  : extract FILENAME
 function extract() {
     if [ -f "$1" ] ; then
         case "$1" in
@@ -233,10 +261,48 @@ function extract() {
         fi
 }
 
-# Sublime
-alias subl="'/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl'"
-export EDITOR="subl"
-
 ####################################################
 # Pythonbrew
+####################################################
 [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
+
+# make auto-completion ignore hidden folder
+bind 'set match-hidden-files off'
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+####################################################
+# Loading config for different platform
+####################################################
+if [ "$(uname)" == "Darwin" ]; then
+    echo " * Loading Config for MAC"
+
+    # SSH keychain
+    keychain $HOME/.ssh/id_rsa
+    source $HOME/.keychain/$HOSTNAME-sh
+
+    alias ls='ls -BG'
+
+    # Sublime
+    alias subl="'/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl'"
+
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    echo " * Loading Config for Linux"
+
+    # SSH keychain
+    /usr/bin/keychain $HOME/.ssh/id_rsa
+    source $HOME/.keychain/$HOSTNAME-sh
+
+    # Lock screen activate XScreenssaver
+    alias lock="xscreensaver-command -lock"
+    alias lcok="xscreensaver-command -lock"
+
+    # For xdg-open
+    alias op='xdg-open'
+
+    alias ls='ls -B --color'
+
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+    # Do something under Windows NT platform
+    echo "I hate Windows"
+fi
