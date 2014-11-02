@@ -21,9 +21,9 @@ ssh-add id_rsa
 # gitignore
 git config --global core.excludesfile '~/.gitignore'
 
-# Linux only
+# Linux only, Paste to Github
 sudo apt-get install xclip
-# Paste to Github
+
 xclip -sel clip < ~/.ssh/id_rsa.pub
 ```
 
@@ -50,3 +50,11 @@ sudo apt-get install openssh-client openssh-server
 ```bash
 sudo apt-get install ntp
 ```
+
+####Iterm2
+[Install](http://iterm2.com/)
+Check this [config](http://imwuyu.me/talk-about/cool-iterm2.html/) and [theme](https://github.com/mbadolato/iTerm2-Color-Schemes)
+
+1. Update theme to Monokai Soda
+2. Update Font
+3. Set global show/hide key
