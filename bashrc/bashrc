@@ -52,7 +52,7 @@ fi
 ################################################
 # Command shortcuts
 ################################################
-alias which="type -path"
+alias which='type -path'
 alias h='history'
 alias l='ls -lh'
 alias tree='tree -C'
@@ -78,7 +78,7 @@ alias mroe='more'
 
 
 # Setup Window for awesome window manager
-alias resizewd="xrandr --output DisplayPort-0 --mode 1920x1200 --right-of DVI-0"
+alias resizewd='xrandr --output DisplayPort-0 --mode 1920x1200 --right-of DVI-0'
 
 # Setting emacs in one window
 alias suem='sudo emacsclient -n'
