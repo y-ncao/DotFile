@@ -261,15 +261,7 @@ function extract() {
         fi
 }
 
-####################################################
-# Pythonbrew
-####################################################
-[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
 
-# make auto-completion ignore hidden folder
-bind 'set match-hidden-files off'
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 ####################################################
 # Loading config for different platform
@@ -286,7 +278,17 @@ if [ "$(uname)" == "Darwin" ]; then
     # Sublime
     alias subl="'/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl'"
 
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    ####################################################
+    # Pythonbrew
+    ####################################################
+    [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
+
+    # make auto-completion ignore hidden folder
+    bind 'set match-hidden-files off'
+
+    export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     echo " * Loading Config for Linux"
 
     # SSH keychain

@@ -129,7 +129,7 @@ start_date = datetime.date(2014, 7, 29)
 ```
 
 #####eval
-```
+```python
 # Python has an eval() function which evaluates a string of Python code:
 assert eval("2 + 3 * len('hello')") == 17
 

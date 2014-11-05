@@ -2,13 +2,17 @@
 (setq auto-save-list-file-name "~/.emacs-save")
 
 ;; add home directory to load path
-(add-to-list 'load-path "/home/ycao/.emacs.d/")
+(add-to-list 'load-path "/home/ycao/.emacs.d/lisp/")
+
+;;emacs package control
+;;(require 'package)
+;;(package-initialize)
 
 ;; fill out to column 76
 (setq-default fill-column 76)
 
 ;; display line number
-(global-linum-mode t)
+(setq-defualt global-linum-mode t)
 
 ;; Get rid of load screen
 (setq inhibit-splash-screen t)
