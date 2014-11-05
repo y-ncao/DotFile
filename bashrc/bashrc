@@ -288,7 +288,7 @@ if [ "$(uname)" == "Darwin" ]; then
 
     export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     echo " * Loading Config for Linux"
 
     # SSH keychain
