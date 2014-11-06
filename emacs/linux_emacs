@@ -2,17 +2,15 @@
 (setq auto-save-list-file-name "~/.emacs-save")
 
 ;; add home directory to load path
-(add-to-list 'load-path "/home/ycao/.emacs.d/lisp/")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
-;;emacs package control
-;;(require 'package)
-;;(package-initialize)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/themes")
 
 ;; fill out to column 76
 (setq-default fill-column 76)
 
 ;; display line number
-(setq-defualt global-linum-mode t)
+(global-linum-mode t)
 
 ;; Get rid of load screen
 (setq inhibit-splash-screen t)
@@ -93,12 +91,12 @@
 (add-hook 'c-mode-common-hook 'cc-linux-hook)
 
 ;; SASS mode
-(add-to-list 'load-path "/home/ycao/.emacs.d/scss-mode.el")
+(add-to-list 'load-path "/home/ycao/.emacs.d/lisp/scss-mode.el")
 (require 'scss-mode)
 (setq-default scss-compile-at-save nil)
 
 ;; coffee mode
-(add-to-list 'load-path "~/.emacs.d/coffee-mode.el")
+(add-to-list 'load-path "~/.emacs.d/lisp/coffee-mode.el")
 (require 'coffee-mode)
 ;; This gives you a tab of 2 spaces
 (custom-set-variables
