@@ -75,8 +75,6 @@ alias grep='grep --color=tty -d skip'
 alias grpe='grep --color=tty -d skip'
 alias mroe='more'
 
-
-
 # Setup Window for awesome window manager
 alias resizewd='xrandr --output DisplayPort-0 --mode 1920x1200 --right-of DVI-0'
 
@@ -119,14 +117,13 @@ export HISTCONTROL=ignoredups:ignorespace
 shopt -s histappend
 
 # in memory readline history size (default is 500)
-export HISTSIZE=5000
+export HISTSIZE=130000
 
 # disk backed readline history size (default is 500)
-export HISTFILESIZE=5000
+export HISTFILESIZE=130000
 
 # Add timestamp
 HISTTIMEFORMAT="[%Y-%m-%d %H:%M:%S] "
-
 
 ####################################################
 # Utility functions
@@ -276,7 +273,7 @@ if [ "$(uname)" == "Darwin" ]; then
     alias ls='ls -BG'
 
     # Sublime
-    alias subl="'/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl'"
+    alias subl="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
 
     ####################################################
     # Pythonbrew
