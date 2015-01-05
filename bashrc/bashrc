@@ -7,7 +7,7 @@ umask=006
 ##################################################
 # General Unix-y environment setup
 ################################################
-export EDITOR='emacsclient -t'
+export EDITOR='emacs'
 export MANPATH=/usr/man:/usr/local/man
 export MPAGE='-b letter'
 export MANPATH=/usr/share/man
@@ -16,15 +16,10 @@ export MANPATH=/usr/share/man
 shopt -s checkwinsize
 ##################################################
 
-##################################################
-# Development specific environment setup
-export ORACLE_HOME=/home/ycao/instantclient_11_2
-##################################################
-
 ################################################
 # Define what your prompt looks like
 # Standard Prompt
-#export PS1="[\u@\h \W]\\$ "
+# export PS1="[\u@\h \W]\\$ "
 # set variable identifying the chroot you work in (used in the prompt below)
 ################################################
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
@@ -80,9 +75,9 @@ alias resizewd='xrandr --output DisplayPort-0 --mode 1920x1200 --right-of DVI-0'
 
 # Setting emacs in one window
 alias suem='sudo emacsclient -n'
-alias em='emacsclient -t'
-alias emw='emacsclient -n'
-alias ewm='emw'
+alias em='emacs -nw'
+alias emw='emacs'
+alias ewm='emacs'
 
 alias cheat='more ~/Dropbox/src/cheatsheet.md'
 
@@ -258,8 +253,6 @@ function extract() {
         fi
 }
 
-
-
 ####################################################
 # Loading config for different platform
 ####################################################
@@ -287,18 +280,20 @@ if [ "$(uname)" == "Darwin" ]; then
 
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     echo " * Loading Config for Linux"
-
+    
+    ####################################################
+    # Removing this part because FB server is hidden from outside
     # SSH keychain
-    /usr/bin/keychain $HOME/.ssh/id_rsa
-    source $HOME/.keychain/$HOSTNAME-sh
+    # /usr/bin/keychain $HOME/.ssh/id_rsa
+    # source $HOME/.keychain/$HOSTNAME-sh
 
     # Lock screen activate XScreenssaver
-    alias lock="xscreensaver-command -lock"
-    alias lcok="xscreensaver-command -lock"
+    # alias lock="xscreensaver-command -lock"
+    # alias lcok="xscreensaver-command -lock"
 
     # For xdg-open
-    alias op='xdg-open'
-
+    # alias op='xdg-open'
+    ####################################################
     alias ls='ls -B --color'
 
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
