@@ -2,8 +2,8 @@
 ```bash
 ln -sf ~/src/git/DotFile/bashrc/bashrc ~/.bashrc
 
-ln -sf ~/src/git/DotFile/linux_emacs ~/.emacs
-ln -sf ~/src/git/DotFile/emacs.d ~/.emacs.d
+ln -sf ~/src/git/DotFile/emacs/linux_emacs ~/.emacs
+ln -sf ~/src/git/DotFile/emacs/emacs.d ~/.emacs.d
 
 ln -sf ~/src/git/DotFile/fonts ~/.fonts
 
