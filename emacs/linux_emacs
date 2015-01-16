@@ -1,8 +1,3 @@
-;; -*- Emacs-Lisp -*-
-;; import the master.emacs file
-(defconst master-dir (getenv "ADMIN_SCRIPTS"))
-(load-library (expand-file-name "master.emacs" master-dir))
-
 ;; auto-save-list into ~/.emacs-save
 (setq auto-save-list-file-name "~/.emacs-save")
 
