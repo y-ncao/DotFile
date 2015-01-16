@@ -4,7 +4,7 @@
 ;; add home directory to load path
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/themes")
+;;(add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/themes")
 
 ;; fill out to column 76
 (setq-default fill-column 76)
@@ -342,7 +342,7 @@ This command is similar to `find-file-at-point' but without prompting for confir
 (setq ido-ignore-extensions t)
 
 ;; emacs server, allows to open file in termianl show in emacs
-(server-start)
+;;(server-start)
 
 ;; I don't need to kill emacs that easily
 ;; the mnemonic is C-x REALLY QUIT
