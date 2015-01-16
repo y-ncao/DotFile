@@ -4,7 +4,7 @@
 ;; add home directory to load path
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
-;;(add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/themes")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/themes")
 
 ;; fill out to column 76
 (setq-default fill-column 76)
