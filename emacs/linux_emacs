@@ -1,4 +1,4 @@
-22;; auto-save-list into ~/.emacs-save
+;; auto-save-list into ~/.emacs-save
 (setq auto-save-list-file-name "~/.emacs-save")
 
 ;; add home directory to load path
