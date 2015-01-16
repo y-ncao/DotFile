@@ -1,4 +1,4 @@
-;; auto-save-list into ~/.emacs-save
+22;; auto-save-list into ~/.emacs-save
 (setq auto-save-list-file-name "~/.emacs-save")
 
 ;; add home directory to load path
@@ -91,7 +91,7 @@
 (add-hook 'c-mode-common-hook 'cc-linux-hook)
 
 ;; SASS mode
-(add-to-list 'load-path "/home/ycao/.emacs.d/lisp/scss-mode.el")
+(add-to-list 'load-path "/home/yanc/.emacs.d/lisp/scss-mode.el")
 (require 'scss-mode)
 (setq-default scss-compile-at-save nil)
 
@@ -110,7 +110,7 @@
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil nil (tool-bar))
- '(user-mail-address "ycao@navisite.com"))
+ '(user-mail-address "cyandterry@hotmail.com"))
 
 
 ;; automatically clean up bad whitespace
