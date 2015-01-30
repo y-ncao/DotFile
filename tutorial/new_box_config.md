@@ -10,7 +10,8 @@ ln -sf ~/src/git/DotFile/fonts ~/.fonts
 ln -sf ~/src/git/DotFile/git/gitignore ~/.gitignore
 ln -sf ~/src/git/DotFile/git/gitconfig ~/.gitconfig
 ln -sf ~/src/git/DotFile/git/git-completion ~/.git-completion
-ln -sf ~/src/git/DotFile/tmux/tmux.config ~/.tmux.config
+
+ln -sf ~/src/git/DotFile/tmux/tmux.conf ~/.tmux.conf
 
 ```
 
