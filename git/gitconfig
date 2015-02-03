@@ -1,9 +1,9 @@
 [user]
-	name = Yan Cao
-	email = cyandterry@hotmail.com
+        name = Yan Cao
+        email = cyandterry@hotmail.com
 
 [push]
-	default = matching
+        default = matching
 
 [alias]
         lol = log --graph --decorate --pretty=oneline --abbrev-commit
@@ -17,6 +17,8 @@
         status = auto
 
 [core]
-	excludesfile = ~/.gitignore
         whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	editor = "emacsclient -t"
+        editor = "emacs"
+
+[http]
+  proxy = fwdproxy.any:8080
