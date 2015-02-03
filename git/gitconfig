@@ -20,7 +20,5 @@
         whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
         editor = "emacs"
 
-[http]
-  proxy = fwdproxy.any:8080
 [diff]
 	algorithm = patience

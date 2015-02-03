@@ -61,3 +61,5 @@ Check this [config](http://imwuyu.me/talk-about/cool-iterm2.html/) and [theme](h
 1. Update theme to Monokai Soda
 2. Update Font
 3. Set global show/hide key
+4. Preference -> Keys -> Remap Modifier Keys. Swap left option and left command
+5. Preference -> Profiles -> Keys -> Left option key act as  +Esc

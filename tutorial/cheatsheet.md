@@ -1,3 +1,17 @@
+###Tmux
+| Key           |  Action  |
+| ------------------------ | -------------------------|
+| & | Delete current window |
+| x | Delete current pane |
+| i  j  k  l | Move pane |
+| n,p | Move window |
+| z | Resize current pane |
+| . | Change number of window |
+| , | Rename window |
+| c | Create new window |
+| y | Rotate pane |
+| t | Swap window |
+
 ###Emacs
 | Key           |  Action  |
 | ------------------------ | -------------------------|
