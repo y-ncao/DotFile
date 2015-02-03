@@ -17,6 +17,12 @@
         interactive = auto
         status = auto
 
+[color "status"]
+        added = green
+        changed = blue
+        untracked = magenta
+        deleted = red
+
 [core]
         whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
         editor = "emacs"
