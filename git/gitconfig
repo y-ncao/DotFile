@@ -22,3 +22,5 @@
 
 [http]
   proxy = fwdproxy.any:8080
+[diff]
+	algorithm = patience
