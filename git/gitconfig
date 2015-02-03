@@ -6,8 +6,9 @@
         default = matching
 
 [alias]
-        lol = log --graph --decorate --pretty=oneline --abbrev-commit
-        lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+        l = log --graph --decorate --pretty=oneline --abbrev-commit
+        la = log --graph --decorate --pretty=oneline --abbrev-commit --all
+        ll = log --stat --abbrev-commit
 
 [color]
         ui = true
@@ -19,6 +20,10 @@
 [core]
         whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
         editor = "emacs"
+        pager = less -r
+
+[http]
+        proxy = fwdproxy.any:8080
 
 [diff]
-	algorithm = patience
+        algorithm = patience
