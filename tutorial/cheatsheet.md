@@ -1,3 +1,9 @@
+###Sublime
+sublime.log_commands(False)
+| Key           |  Action  |
+| ------------------------ | -------------------------|
+| ctrl+m | Move to bracket |
+
 ###Tmux
 | Key           |  Action  |
 | ------------------------ | -------------------------|
@@ -11,6 +17,7 @@
 | c | Create new window |
 | y | Rotate pane |
 | t | Swap window |
+
 
 ###Emacs
 | Key           |  Action  |
