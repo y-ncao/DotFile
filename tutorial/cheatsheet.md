@@ -1,5 +1,6 @@
 ###Sublime
 sublime.log_commands(False)
+
 | Key           |  Action  |
 | ------------------------ | -------------------------|
 | ctrl+m | Move to bracket |
