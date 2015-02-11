@@ -1,5 +1,8 @@
 ###Sublime
-sublime.log_commands(False)
+```bash
+// ctrl+`
+>>sublime.log_commands(False)
+```
 
 | Key           |  Action  |
 | ------------------------ | -------------------------|
