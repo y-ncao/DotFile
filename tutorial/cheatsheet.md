@@ -7,6 +7,8 @@
 | Key           |  Action  |
 | ------------------------ | -------------------------|
 | ctrl+m | Move to bracket |
+| super+f2 | Toggle bookmark |
+| f2 | Next bookmark |
 
 ###Tmux
 | Key           |  Action  |
