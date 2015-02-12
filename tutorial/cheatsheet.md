@@ -9,6 +9,19 @@
 | ctrl+m | Move to bracket |
 | super+f2 | Toggle bookmark |
 | f2 | Next bookmark |
+| super+mouse_click | Create places you want for curser |
+| super+d | Fined under expand current word |
+| super+p | Goto anywhere(switch between tabs) |
+| (followed by super+p)  : | Goto a line |
+| (followed by super+p)  @ | Goto a function definition |
+| super+/ | comment code |
+| super+l, super+l | Select multiple lines |
+| super+l | Select current line |
+| super+shift+j | Select all code that shares immediate indentation |
+| super+shift+A | Select everything inside the current HTML tag |
+| ctrl+shift+up/down | Select line |
+| ctrl+super+up/down | Move a line up/down |
+
 
 ###Tmux
 | Key           |  Action  |
