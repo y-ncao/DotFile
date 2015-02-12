@@ -21,7 +21,9 @@
 | super+shift+A | Select everything inside the current HTML tag |
 | ctrl+shift+up/down | Select line |
 | ctrl+super+up/down | Move a line up/down |
-
+| super+shift+enter | Maximize pane |
+| ctrl+x+o | Switch pane |
+| ctrl+x+d | Delete pane |
 
 ###Tmux
 | Key           |  Action  |
