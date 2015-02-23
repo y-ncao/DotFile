@@ -24,6 +24,8 @@
 | super+shift+enter | Maximize pane |
 | ctrl+x+o | Switch pane |
 | ctrl+x+d | Delete pane |
+| ctrl+1~3 | Switch between panes |
+| ctrl+shift+1~3 | Move tab to another pane|
 
 ###Tmux
 | Key           |  Action  |
