@@ -1,3 +1,8 @@
+;; -*- Emacs-Lisp -*-
+;; import the master.emacs file
+(defconst master-dir (getenv "ADMIN_SCRIPTS"))
+(load-library (expand-file-name "master.emacs" master-dir))
+
 ;; auto-save-list into ~/.emacs-save
 (setq auto-save-list-file-name "~/.emacs-save")
 
@@ -346,8 +351,8 @@ This command is similar to `find-file-at-point' but without prompting for confir
 
 ;; I don't need to kill emacs that easily
 ;; the mnemonic is C-x REALLY QUIT
-(global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
-(global-set-key (kbd "C-x C-c") 'delete-frame)
+;;(global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
+;;(global-set-key (kbd "C-x C-c") 'delete-frame)
 
 ;; Use M-w for copy-line if no active region
 ;; Taken from https://github.com/skeeto/.emacs.d/blob/master/lisp/extras.el
