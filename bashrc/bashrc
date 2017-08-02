@@ -81,6 +81,9 @@ alias ewm='emacs'
 
 alias cheat='more ~/Dropbox/src/cheatsheet.md'
 
+alias moshdev='mosh -6 dev6616.prn1.facebook.com'
+alias mosprod='mosh -6 devvm20771.prn1.facebook.com'
+
 function whichdb (){
     source ~/src/git/portal/bashrc
     ~/src/git/corp_tools/whichdbs
