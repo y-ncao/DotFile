@@ -1,6 +1,10 @@
 ####Create semi links for config files
 ```bash
+### For linux
 ln -sf ~/src/git/DotFile/bashrc/bashrc ~/.bashrc
+
+### For Mac
+ln -sf ~/src/git/DotFile/bashrc/bashrc ~/.bash_profile
 
 ln -sf ~/src/git/DotFile/emacs/linux_emacs ~/.emacs
 ln -sf ~/src/git/DotFile/emacs/emacs.d ~/.emacs.d
