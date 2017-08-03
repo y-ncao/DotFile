@@ -59,6 +59,8 @@ sudo apt-get install ntp
 ```
 
 ####Iterm2
+
+This is deprecated. You just need to sync it from dropbox
 [Install](http://iterm2.com/)
 Check this [config](http://imwuyu.me/talk-about/cool-iterm2.html/) and [theme](https://github.com/mbadolato/iTerm2-Color-Schemes)
 
@@ -67,3 +69,8 @@ Check this [config](http://imwuyu.me/talk-about/cool-iterm2.html/) and [theme](h
 3. Set global show/hide key
 4. Preference -> Keys -> Remap Modifier Keys. Swap left option and left command
 5. Preference -> Profiles -> Keys -> Left option key act as  +Esc
+
+####Atom
+1. Install `sync-settings`
+2. 51b0d73b77c1f3a01ebaafab1043f073c22e9169 - pat
+3. 68389d5f56c6c053163cb0369f44cdaf - gid
