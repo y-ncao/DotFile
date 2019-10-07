@@ -79,7 +79,9 @@ use_authtok tells pam_unix to not bother doing any of its own internal password 
 ```
 
 6. make the root password never expire - since there isn't one.
-`chage -M -1 root`
+```
+chage -M -1 root
+```
 
 7. Disable remote root logins
    Edit /etc/ssh/sshd_config and make sure this line exists:
