@@ -1,4 +1,4 @@
-## Sublime
+# Sublime
 
 ```bash
 // ctrl+`
@@ -28,7 +28,7 @@
 | ctrl+1~3 | Switch between panes |
 | ctrl+shift+1~3 | Move tab to another pane|
 
-## Tmux
+# Tmux
 
 | Key           |  Action  |
 | ------------------------ | -------------------------|
@@ -44,7 +44,7 @@
 | t | Swap window |
 
 
-## Emacs
+# Emacs
 | Key           |  Action  |
 | ------------------------ | -------------------------|
 | C-u C-x =                | Check the font info |
@@ -73,7 +73,7 @@
 * repleace-regex <RET>^<RET>Your Text<RET> Insert text to every line begin
 * sort lines
 
-## bash
+# bash
 ```
 dig any yancao-terry.com +short            # DNS lookup tool
 ```
@@ -91,7 +91,7 @@ killall -v python                          # when seeing a lot python process, u
 grep search for a error code               # grep -r "[0-9]\{4\}" *
 ```
 
-## git
+# git
 Way to do the rebase:
 1. ```git checkout master```
 2. ```git pull origin master```
@@ -102,11 +102,11 @@ Way to do the rebase:
 7. ```git push -u origin master```     After that git pull is all set
 8. ```git log --author="Yan Cao" --pretty=tformat: --numstat | gawk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s removed lines: %s total lines: %s\n", add, subs, loc }' -```
 
-##python
+# python
 ```python
 python -m SimpleHTTPServer
 ```
-##Open File
+## Open File
 ```python
 f = open('perm_log.txt', 'w')
 f.write('Something\n')
@@ -182,7 +182,7 @@ assert eval("2 + 3 * len('hello')") == 17
 # ast.literal_eval raises an exception if the input isn't a valid Python datatype, so the code won't be executed if it's not.
 new_data = ast.literal_eval(data_entered)
 ```
-## Iterm2
+# Iterm2
 * Command + Option + Shift + H for a horizontal split
 * Command + Option + Shift + V for a vertical split
 * Command + Option + [Arrow Key]: Switches to the next pane in that direction
