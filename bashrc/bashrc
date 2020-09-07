@@ -10,10 +10,10 @@ umask=006
 export EDITOR='emacs'
 export MANPATH=/usr/man:/usr/local/man
 export MPAGE='-b letter'
-export MANPATH=/usr/share/man
+# export MANPATH=/usr/share/man
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+# shopt -s checkwinsize
 ##################################################
 
 ################################################
@@ -82,7 +82,7 @@ alias ewm='emacs'
 alias cheat='more ~/Dropbox/src/cheatsheet.md'
 
 alias moshdev='mosh -6 dev6616.prn1.facebook.com'
-alias mosprod='mosh -6 devvm20771.prn1.facebook.com'
+alias code='code-fb'
 
 function whichdb (){
     source ~/src/git/portal/bashrc
@@ -112,7 +112,7 @@ export FIGNORE=\~
 export HISTCONTROL=ignoredups:ignorespace
 
 # Append not overwrite
-shopt -s histappend
+# shopt -s histappend
 
 # in memory readline history size (default is 500)
 export HISTSIZE=130000
@@ -259,47 +259,63 @@ function extract() {
 ####################################################
 # Loading config for different platform
 ####################################################
-if [ "$(uname)" == "Darwin" ]; then
-    echo " * Loading Config for MAC"
+# if [ "$(uname)" == "Darwin" ]; then
+#     echo " * Loading Config for MAC"
 
-    # SSH keychain
-    keychain $HOME/.ssh/id_rsa
-    source $HOME/.keychain/$HOSTNAME-sh
+#     # SSH keychain
+#     keychain $HOME/.ssh/id_rsa
+#     source $HOME/.keychain/$HOSTNAME-sh
 
-    alias ls='ls -BG'
+#     alias ls='ls -BG'
 
-    # Sublime
-    alias subl="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
+#     # Sublime
+#     alias subl="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
 
-    ####################################################
-    # Pythonbrew
-    ####################################################
-    [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
+#     ####################################################
+#     # Pythonbrew
+#     ####################################################
+#     [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
 
-    # make auto-completion ignore hidden folder
-    bind 'set match-hidden-files off'
+#     # make auto-completion ignore hidden folder
+#     bind 'set match-hidden-files off'
 
-    export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+#     export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    echo " * Loading Config for Linux"
-    
-    ####################################################
-    # Removing this part because FB server is hidden from outside
-    # SSH keychain
-    # /usr/bin/keychain $HOME/.ssh/id_rsa
-    # source $HOME/.keychain/$HOSTNAME-sh
+# elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+#     echo " * Loading Config for Linux"
 
-    # Lock screen activate XScreenssaver
-    # alias lock="xscreensaver-command -lock"
-    # alias lcok="xscreensaver-command -lock"
+#     ####################################################
+#     # Removing this part because FB server is hidden from outside
+#     # SSH keychain
+#     # /usr/bin/keychain $HOME/.ssh/id_rsa
+#     # source $HOME/.keychain/$HOSTNAME-sh
 
-    # For xdg-open
-    # alias op='xdg-open'
-    ####################################################
-    alias ls='ls -B --color'
+#     # Lock screen activate XScreenssaver
+#     # alias lock="xscreensaver-command -lock"
+#     # alias lcok="xscreensaver-command -lock"
 
-elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
-    # Do something under Windows NT platform
-    echo "I hate Windows"
-fi
+#     # For xdg-open
+#     # alias op='xdg-open'
+#     ####################################################
+#     alias ls='ls -B --color'
+
+# elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+#     # Do something under Windows NT platform
+#     echo "I hate Windows"
+# fi
+
+# BEGIN: Block added by chef, to set environment strings
+# Please see https://fburl.com/AndroidProvisioning if you do not use bash
+# or if you would rather this bit of code 'live' somewhere else
+. ~/.fbchef/environment
+# END: Block added by chef
+
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+
+function realpath() {
+    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
+#source /Users/yanc/src/git/libra/env-config/mac
+#source /Users/yanc/.cargo/env
