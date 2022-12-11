@@ -1,0 +1,273 @@
+# Include git completion bashrc fragments
+source ~/.git-completion
+
+# Setup file creation permissions default as 644
+umask=006
+
+##################################################
+# General Unix-y environment setup
+export EDITOR='emacsclient -t'
+export MANPATH=/usr/man:/usr/local/man
+export MPAGE='-b letter'
+export MANPATH=/usr/share/man
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+##################################################
+
+##################################################
+# Development specific environment setup
+export ORACLE_HOME=/home/ycao/instantclient_11_2
+##################################################
+
+################################################
+# Define what your prompt looks like
+# Standard Prompt
+#export PS1="[\u@\h \W]\\$ "
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+color_prompt=yes
+#color_prompt=
+
+# Pick prompt based on color support..but also add git branch info
+# \u = user
+# \h = host
+# \W = relative path (\w  = absolute path)
+# [01;32m] sets green on \u\h
+# [01;34m] sets blue on \W
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}[\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$(__git_ps1 " (%s)")]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}[\u@\h:\W$(__git_ps1 " (%s)")]\$ '
+fi
+
+# Prompt with git branch added - no colors
+#export PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+################################################
+
+################################################
+# SSH Keychain
+################################################
+/usr/bin/keychain $HOME/.ssh/id_rsa
+source $HOME/.keychain/$HOSTNAME-sh
+
+################################################
+# Command shortcuts - optional
+alias which="type -path"
+alias h='history'
+alias l='ls -lh'
+alias ls='ls -B --color'
+alias tree='tree -C'
+
+# Alias to restart apache
+alias rapache='sudo /etc/init.d/apache2 restart'
+
+# Alias to tail the apache error log file
+alias tap='sudo tail -f /var/log/apache2/error.log'
+
+# Add some color to grep commands. Speed it up by skipping dir names
+# handle common typos
+alias egrep='egrep --color=tty -d skip'
+alias egrpe='egrep --color=tty -d skip'
+alias fgrep='fgrep --color=tty -d skip'
+alias fgrpe='fgrep --color=tty -d skip'
+
+# Frequent Typos
+alias grep='grep --color=tty -d skip'
+alias grpe='grep --color=tty -d skip'
+alias mroe='more'
+
+# For xdg-open
+alias op='xdg-open'
+
+# Personal setting for grep and find
+function gp {
+    if [ -z "$2" ]
+    then
+        grep --color=tty -d recurse -n -i "$1" *
+    else
+        grep --color=tty -d recurse -n -i "$2" "$1" *
+    fi
+}
+
+function fd { find . -iname "*$1*" ; }
+# grep count
+#alias grepcount="grep -ch $1 $2 | awk '{ count += $0} END {print count}'"
+
+# Lock screen activate XScreenssaver
+alias lock="xscreensaver-command -lock"
+alias lcok="xscreensaver-command -lock"
+
+# Setup Window for awesome window manager
+alias resizewd="xrandr --output DisplayPort-0 --mode 1920x1200 --right-of DVI-0"
+
+# Setting emacs in one window
+alias suem='sudo emacsclient -n'
+alias em='emacsclient -t'
+alias emw='emacsclient -n'
+alias ewm='emw'
+
+alias cheat='more ~/Dropbox/src/cheatsheet.txt'
+
+function whichdb (){
+    source ~/src/git/portal/bashrc
+    ~/src/git/corp_tools/whichdbs
+    source ~/src/git/quote-engine/bashrc
+    ~/src/git/corp_tools/whichdbs
+}
+
+#################################################
+# Path control
+export PATH=/bin:/usr/bin:/usr/X11R6/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/bin/mh
+#################################################
+
+#################################################
+# Mess with tab completion
+# Tab completion to only show directories when using cd
+complete -d cd
+
+# Don't show files ending in ~ using tab completion (.o:~ would do .o's too).
+export FIGNORE=\~
+#################################################
+
+####################################################
+# Control "history" command behavior
+# If I run same command back to back don't put in history
+export HISTCONTROL=ignoredups:ignorespace
+
+# Append not overwrite
+shopt -s histappend
+
+# in memory readline history size (default is 500)
+export HISTSIZE=5000
+
+# disk backed readline history size (default is 500)
+export HISTFILESIZE=5000
+
+# Add timestamp
+HISTTIMEFORMAT="[%Y-%m-%d %H:%M:%S] "
+####################################################
+
+####################################################
+# Utility functions
+
+# Purpose: Convert a Unix time_t to a human readable date
+#        e.g.: x 1234567890.0 returns: 2009-02-13 18:31:30
+# Usage  : x TIME_T value
+function x () {
+   date -d"1970-01-01 UTC $1 seconds" +"%Y-%m-%d %H:%M:%S";
+}
+
+# Purpose: Show all process running as you
+# Usage  : z
+function z () {
+   pstree -ap $USER
+}
+
+# Purpose: Function to do a ps with a search
+# Usage  : pss SOMESTRING
+function pss () {
+    ps -aefl | grep "$1"
+}
+
+# Purpose: Function to do a filename search
+# Usage  : ff FILENAMEPATTERN
+function ff () {
+    find . -name "$1" -print
+}
+
+# Purpose: Function to find files and perform a search
+# Usage  : ffs FILENAMEPATTERN SOMESTRING
+function ffs () {
+    ff "$1" | xargs grep "$2"
+}
+
+# Purpose: Function to find files and perform a search case insensitively
+# Usage  : ffs FILENAMEPATTERN SOMESTRING
+function ffsi () {
+    ff "$1" | xargs grep -i "$2"
+}
+
+# Purpose: Function to find .py files in the current directory and search for a string in them
+# Usage  : fpy SOMESTRING
+function fpy () {
+    ffsi '*.py' "$1"
+}
+
+# Purpose: Function to find .sql files in the current directory and search for a string in them
+# Usage  : fsql SOMESTRING
+function fsql () {
+    ffsi '*.sql' "$1"
+}
+
+# Purpose: Function to find .xml files in the current directory and search for a string in them
+# Usage  : fxml SOMESTRING
+function fxml () {
+    ffsi '*.xml' "$1"
+}
+
+# Purpose: Function to find .js files in the current directory and search for a string in them
+# Usage  : fjs SOMESTRING
+function fjs () {
+    ffsi '*.js' "$1"
+}
+
+# Purpose: Function to find .css files in the current directory and search for a string in them
+# Usage  : fcss SOMESTRING
+function fcss () {
+    ffsi '*.css' "$1"
+}
+
+# Purpose: Function to find all .pyc files and remove them
+# Usage  : rmpyc
+function rmpyc () {
+    ff '*.pyc' | xargs rm
+}
+
+
+# Purpose: Function to cleanup all unwanted files
+# Usage  : clean
+function clean () {
+    ff '*.pyc' | xargs rm
+    ff '*~' | xargs rm
+    ff '\#*\#' | xargs rm
+    clear
+    ls
+}
+
+
+
+function extract() {
+    if [ -f "$1" ] ; then
+        case "$1" in
+            *.tar.bz2)  tar xjf "$1"      ;;
+            *.tar.gz)   tar xzf "$1"      ;;
+            *.tar.Z)    tar xzf "$1"      ;;
+            *.bz2)      bunzip2 "$1"      ;;
+            *.rar)      unrar x "$1"      ;;
+            *.gz)       gunzip "$1"       ;;
+            *.jar)      unzip "$1"        ;;
+            *.tar)      tar xf "$1"       ;;
+            *.tbz2)     tar xjf "$1"      ;;
+            *.tgz)      tar xzf "$1"      ;;
+            *.zip)      unzip "$1"        ;;
+            *.Z)        uncompress "$1"   ;;
+            *)          echo "'$1' cannot be extracted" ;;
+            esac
+        else
+        echo "'$1' is not a file"
+        fi
+}
+
+
+####################################################
+# Pythonbrew
+[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
+
+# make auto-completion ignore hidden folder
+bind 'set match-hidden-files off'
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
