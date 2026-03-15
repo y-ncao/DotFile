@@ -8,6 +8,9 @@ macos-titlebar-style = transparent
 window-save-state = always
 window-theme = auto
 
+selection-foreground = #ffffff
+selection-background = #555555
+
 # --- Focus ---
 focus-follows-mouse = true
 
@@ -26,6 +29,7 @@ clipboard-paste-bracketed-safe = true
 
 # --- Shell Integration ---
 shell-integration = detect
+shell-integration-features = no-cursor
 
 # --- Performance ---
 scrollback-limit = 25000000
