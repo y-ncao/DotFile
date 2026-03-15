@@ -2,8 +2,8 @@
 theme = "Monokai Soda"
 
 # --- Window and Appearance ---
-background-opacity = 0.85
-background-blur-radius = 30
+background-opacity = 0.98
+#background-blur-radius = 30
 macos-titlebar-style = transparent
 window-save-state = always
 window-theme = auto
