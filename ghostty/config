@@ -1,0 +1,10 @@
+theme = "Monokai Soda"
+
+background-opacity = 0.97
+
+focus-follows-mouse = true
+
+copy-on-select = clipboard
+
+keybind = global:super+escape=toggle_visibility
+keybind = super+l=clear_screen
