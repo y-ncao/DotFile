@@ -33,19 +33,17 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 
-### 4. Apply dotfiles
+### 4. Clone dotfiles repo and apply
 
 ```bash
-chezmoi init --apply https://github.com/y-ncao/DotFile.git
+mkdir -p ~/src
+git clone https://github.com/y-ncao/DotFile.git ~/src/DotFile
+mkdir -p ~/.config/chezmoi
+echo 'sourceDir = "/Users/yanc/src/DotFile"' > ~/.config/chezmoi/chezmoi.toml
+chezmoi apply
 ```
 
-### 5. Set chezmoi source directory
-
-```bash
-echo 'sourceDir = "'$(chezmoi source-path)'"' > ~/.config/chezmoi/chezmoi.toml
-```
-
-### 6. Restart shell
+### 5. Restart shell
 
 ```bash
 exec zsh
